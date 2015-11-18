@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="The Page Description">
+		<style type="text/css">@-ms-viewport{width: device-width;}</style>
+		<title>Optimum</title>
+		<link rel="stylesheet" href="{% static 'css/layers.min.css' %}" media="screen">
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" media="screen"> 
+		<link rel="stylesheet" href="{% static 'style.css' %}" media="screen">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		<!-- <link rel="icon" href="{% static 'favicon.ico' %}"> -->
+		<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+		<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-touch-icon-76x76.png' %}">
+		<link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/apple-touch-icon-120x120.png' %}">
+		<link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/apple-touch-icon-152x152.png' %}">		
+	</head>
+
+	<body class="page">
+
+		<header role="banner" class="transparent light">
+			<div class="row">
+				<div class="nav-inner row-content buffer-left buffer-right even clear-after">
+					<div id="brand">
+						<h1 class="reset"><!--<img src="img/logo.png" alt="logo">--><a href="/Optimum/">Optimum</a></h1>
+					</div><!-- brand -->
+					<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
+					<nav>
+						<ul class="reset" role="navigation">
+						{% for item in menu_items %}
+							<li class="menu-item">
+								<a href="/{{item.menu_title}}/">{{item.menu_title}}</a>
+								{% if item.menu_title == "services" or item.menu_title == "Services" %}
+								<ul class="sub-menu">
+								{% for service in services %}
+									<li><a href="/Services/">{{service.service_name}}</a></li>
+									
+								{% endfor %}
+								</ul>
+								{% elif item.menu_title == "clients" or item.menu_title == "Clients" %}
+								<ul class="sub-menu">
+									{% for client in clients %}
+									<li><a href="/Clients/">{{client.client_name}}</a></li>
+									
+								{% endfor %}
+								</ul>
+								{% elif item.menu_title == "products" or item.menu_title == "Products" %}
+								<ul class="sub-menu">
+										{% for product in products %}
+									<li><a href="/Products/">{{product.product_name}}</a></li>
+									
+								{% endfor %}
+								</ul>
+								{% else %}
+
+								{% endif %}
+							</li>
+							{% endfor %}
+							
+							<li class="menu-item"><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</header>
+
+		<main role="main">
+			<div id="intro-wrap">
+				<div id="intro" class="preload darken" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">		
+				{% for img in slider_images %}			
+					<div class="intro-item" style="background-image: url({{img.img_path.url}});">
+						<div class="caption">
+							
+						</div><!-- caption -->
+										
+					</div>					
+					{% endfor %}				
+					
+					</div>																		
+				</div><!-- intro -->
+			</main><!-- intro-wrap -->
+
+			<div id="main">
+
+			
+				<section class="row section">
+					<div class="row-content buffer even clear-after">					
+						<div class="section-title"><h3>Latest News</h3></div>
+						<div class="grid-items blog-section masonry-style preload">
+							{% for client in clients %}
+							<article class="item column three">
+								
+
+									<div class="blog-excerpt">
+										<div class="blog-excerpt-inner">
+											<h5 class="meta-post">{{client.client_name}}</h5>
+											<h2>{{client.client_address}}</h2>
+											<p>{{client.client_desc}}</p>
+										</div><!-- blog-excerpt-inner -->		
+									</div><!-- blog-excerpt -->								
+								
+							</article>											
+				{% endfor %}		
+							
+							<div class="shuffle-sizer three"></div>
+						</div><!-- grid-items -->
+										
+					</div>	
+				</section>	
+
+
+
+
+
+					
+			</div><!-- id-main -->
+		</main><!-- main -->
+
+		<footer role="contentinfo">
+			<div class="row">
+				<div class="row-content buffer clear-after">
+					<section id="top-footer">
+						<div class="widget meta-social column three">
+							<h4>Follow Us</h4>
+							<ul class="inline">
+								<li><a href="#" class="twitter-share border-box"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="#" class="facebook-share border-box"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="#" class="pinterest-share border-box"><i class="fa fa-pinterest fa-lg"></i></a></li>
+							</ul>
+						</div>														
+					</section><!-- top-footer -->
+					<section id="bottom-footer">
+						<p class="keep-left">&copy; 2015 <a href="http://mokaine.com/" alt="Optimum ">Optimum</a>. All Rights Reserved.</p>
+						
+					</section><!-- bottom-footer -->			
+				</div><!-- row-content -->	
+			</div><!-- row -->	
+		</footer>
+		{% load static %}
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>		
+		<script src="{% static 'js/plugins.js' %}"></script>
+		<script src="{% static 'js/beetle.js' %}"></script>
+
+	</body>
+
+</html>
